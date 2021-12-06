@@ -1,0 +1,33 @@
+﻿<Page
+    x:Class="Scheduler.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Scheduler"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+        <NavigationView x:Name="NavView" ItemInvoked="NavigationView_ItemInvoked" IsBackButtonVisible="Collapsed" Loaded="NavView_Loaded" Background="{ThemeResource SystemControlAcrylicWindowBrush}">
+            <NavigationView.MenuItems>
+                <NavigationViewItem Content="Stundenplan" Tag="Stundenplan" Icon="Calendar"/>
+                <NavigationViewItem Content="Aufgaben" Tag="Aufgaben" Icon="Important"/>
+            </NavigationView.MenuItems>
+            <Frame x:Name="ContentFrame" Padding="12,0,12,24" IsTabStop="True"
+                    NavigationFailed="ContentFrame_NavigationFailed"/>
+        </NavigationView>
+        
+        <!--<VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState>
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger
+                        MinWindowWidth="{x:Bind NavViewCompactModeThresholdWidth}"/>
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="ContentFrame.Padding" Value="24,0,24,24"/>
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>-->
+</Page>
