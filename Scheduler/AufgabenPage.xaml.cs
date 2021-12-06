@@ -20,6 +20,7 @@ namespace Scheduler
     {
         ObservableCollection<Assignment> assignmentList;
         ObservableCollection<Assignment> doneAssignmentList;
+
         public AufgabenPage()
         {
             this.InitializeComponent();
@@ -28,15 +29,22 @@ namespace Scheduler
             AssignmentList.ItemsSource = assignmentList;
             AssignmentList2.ItemsSource = doneAssignmentList;
 
-            Assignment a = new Assignment("hellu");
+            Assignment a = new Assignment("hellu", "E", DateTime.Now, description:"why am i doing this");
             assignmentList.Add(a);
-
+            Assignment b = new Assignment("Informatik-HA", "INF", DateTime.Now, description:"Vortrag vorbereiten?");
+            assignmentList.Add(b);
+            Assignment c = new Assignment("irgendetwas mit falschem Fach", "sd", DateTime.Now, description: "nyanya");
+            assignmentList.Add(c);
+            Assignment d = new Assignment("wah", "D", DateTime.Now, description: "irgendetwas langeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeees nyanyanyanyanyanyanyanyanyanyanyanya");
+            assignmentList.Add(d);
         }
-        private void OnMoveButtonClick(object sender, RoutedEventArgs e)
+
+
+        private void OnMoveButtonClick(object sender, RoutedEventArgs args)
         {
             Button b = sender as Button;
             string id = b.Tag.ToString();
-            foreach(var item in assignmentList)
+            foreach (var item in assignmentList)
             {
                 if (item.ID == id)
                 {
@@ -55,8 +63,19 @@ namespace Scheduler
                 }
             }
             return;
-
         }
 
+        private void List_PointerEntered(object sender, PointerRoutedEventArgs e)
+        {
+            if (e.Pointer.PointerDeviceType == Windows.Devices.Input.PointerDeviceType.Mouse || e.Pointer.PointerDeviceType == Windows.Devices.Input.PointerDeviceType.Pen)
+            {
+                VisualStateManager.GoToState(sender as Control, "moveButtonShown", true);
+            }
+        }
+
+        private void List_PointerExited(object sender, PointerRoutedEventArgs e)
+        {
+            VisualStateManager.GoToState(sender as Control, "moveButtonHidden", true);
+        }
     }
 }
